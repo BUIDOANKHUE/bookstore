@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/shared/layout::dynamic(~{::title},~{::main})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:fragment="title">Product Detail</title>
+</head>
+
+<body>
+   <main th:fragment="main">
+    <div class="product-detail">
+        <div class="product-info">
+            <h1 class="product-title" th:text="${item.name}"></h1>
+            <div class="product-image">
+                <img th:src="@{|/images/${item.image}|}" alt="Product Image">
+            </div>
+            <ul class="product-details">
+                <li><span class="detail-label">Price:</span> <span th:text="${item.price}"></span></li>
+                <li><span class="detail-label">Năm Phát Hành:</span> <span th:text="${item.createDate}"></span></li>
+                <li><span class="detail-label">Có sẵn:</span> <span th:text="${item.available?'Yes':'No'}"></span></li>
+                <li><span class="detail-label">Thể Loại:</span> <span th:text="${item.category.name}"></span></li>
+                
+            </ul>
+                                        <a class="footer-link" th:href="@{|/cart/add/${item.id}|}"><i class="fa-solid fa-cart-arrow-down"></i></a>
+            
+        </div>
+        
+    </div>
+    <div class="related-products">
+        <h3>Những sản phẩm tương tự</h3>
+        <div class="related-products-container">
+            <ul class="related-products-list">
+                <li th:each="p: ${item.category.products}">
+                    <div class="related-product-card">
+                        <div class="card-img">
+                            <a th:href="@{|/product/detail/${p.id}|}"><img th:src="@{|/images/${p.image}|}" alt="Product Image"></a>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><a th:href="@{|/product/detail/${p.id}|}" th:text="${p.name}"></a></li>
+                                <li><span th:text="${p.price}"></span></li>
+                            </ul>
+                        </div>
+                        <div class="card-footer-wrapper">
+                            <a class="footer-link" th:href="@{|/product/detail/${p.id}|}"><i class="fa-regular fa-eye"></i></a>
+                            <span class="separator">  </span>
+                            <a class="footer-link" th:href="@{|/cart/add/${p.id}|}"><i class="fa-solid fa-cart-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>  
+        </div>
+    </div>
+</main>
+</body>
+
+</html>

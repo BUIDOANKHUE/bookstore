@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/shared/layout::dynamic(~{::title},~{::main})}">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title th:fragment="title">Trang chủ</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+
+<body>
+
+	<main th:fragment="main">
+	<div class="search-container">
+        <form th:action="@{/home/index}" method="get">
+            <div class="search-input">
+                <input type="text" name="keyword" placeholder="Bạn đang muốn đọc gì ?"
+                       th:value="${keyword}">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </form>
+    </div>
+		<div class="card-container">
+			<th:block th:each="p: ${productPage.content}">
+				<div class="card">
+					<div class="card-img">
+						<img th:src="@{/images/__${p.image}__}" alt="Product Image">
+
+					</div>
+					<div class="card-body">
+						<ul>
+							<li><a th:text="${p.name}"> </a></li>
+							<li><a th:text="${p.price}"></a></li>
+							<li><a th:href="@{|/product/detail/${p.id}|}"><i class="fa-regular fa-eye"style="color: red;"></i></a>  <a
+								th:href="@{|/cart/add/${p.id}|}"><i class="fa-solid fa-cart-arrow-down" style="color: red;" ></i></a></li>
+						</ul>
+					</div>
+				</div>
+				
+			</th:block>
+		</div>
+		<div class="pagination">
+			<ul>
+				<li th:if="${productPage.hasPrevious}"><a
+					th:href="@{|/home/index?page=0|}" aria-label="First"> <span
+						aria-hidden="true">&laquo;&laquo;</span>
+				</a></li>
+				<li th:if="${productPage.hasPrevious}"><a
+					th:href="@{|/home/index?page=${productPage.number - 1}|}"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li
+					th:each="pageNumber : ${#numbers.sequence(0, productPage.totalPages - 1)}">
+					<a th:href="@{|/home/index?page=${pageNumber}|}"
+					th:class="${pageNumber == productPage.number ? 'active' : ''}"
+					th:text="${pageNumber + 1}"></a>
+				</li>
+				<li th:if="${productPage.hasNext}"><a
+					th:href="@{|/home/index?page=${productPage.number + 1}|}"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+				<li th:if="${productPage.hasNext}"><a
+					th:href="@{|/home/index?page=${productPage.totalPages - 1}|}"
+					aria-label="Last"> <span aria-hidden="true">&raquo;&raquo;</span>
+				</a></li>
+			</ul>
+		</div>
+	</main>
+</body>
+</html>

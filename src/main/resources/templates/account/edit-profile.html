@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:fragment="title">Cập nhật tài khoản</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        i {
+            display: block;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>      <a href="/home/index" style="text-decoration: none; color: black;"> <i class="fa-solid fa-house"></i>Trang Chủ   </a> 
+</h2>
+
+    <main th:fragment="main">
+        <h2>Cập nhật tài khoản</h2>
+        <form action="/account/edit-profile" method="post" enctype="multipart/form-data">
+	        <i th:text="${message}"></i>
+	        <ul th:object="${account}">
+	            <li>Username: <input th:field="*{username}" readonly></li>
+	            <li>Fullname: <input th:field="*{fullname}"></li>
+	            <li>Email Address: <input th:field="*{email}"></li>
+	            <li>Photo: <input th:field="*{photo}"></li>
+	            <li><button>Update</button></li>
+	            <input th:field="*{password}" type="hidden">
+	        </ul>
+	    </form>
+    </main>
+</body>
+
+</html>

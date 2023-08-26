@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:fragment="title">Đăng ký thành viên</title>
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style type="text/css">
+    /* Reset some default browser styles */
+/* Reset some default browser styles */
+body, h2, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Global styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header styling */
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Main container styling */
+main {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+form {
+    text-align: left;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+        text-align: right; /* Align input content to the right */
+    
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+    
+    </style>
+    
+    
+</head>
+
+<body>
+<h2>      <a href="/home/index" style="text-decoration: none; color: black;"> <i class="fa-solid fa-house"></i>  </a> 
+</h2>
+       <main th:fragment="main">
+        <h2>Đăng ký thành viên</h2>
+        <form th:object="${account}" action="/account/sign-up" method="post" enctype="multipart/form-data">
+	        <i th:text="${message}"></i>
+	        <ul>
+	            <li>Username: <input th:field="*{username}"></li>
+	            <li>Password: <input th:field="*{password}"></li>
+	            <li>Confirm: <input name="confirm"></li>
+	            <li>Fullname: <input th:field="*{fullname}"></li>
+	            <li>Email Address: <input th:field="*{email}"></li>
+	            <li>Photo: <input th:field="*{photo}"></li>
+	            <li><button>Sign Up</button></li>
+	        </ul>
+	    </form>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/shared/layout::dynamic(~{::title},~{::main})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:fragment="title">Quản lý đơn hàng</title>
+</head>
+
+<body>
+    <main th:fragment="main" style="max-width: 800px; margin: 40px auto; padding: 20px; background-color: white; border-radius: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+    <h2 style="margin-bottom: 20px; color: #333;">Quản lý đơn hàng</h2>
+    <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th style="padding: 10px; text-align: left; background-color: #f2f2f2; font-weight: bold;">No</th>
+                <th style="padding: 10px; text-align: left; background-color: #f2f2f2; font-weight: bold;">Id</th>
+                <th style="padding: 10px; text-align: left; background-color: #f2f2f2; font-weight: bold;">Shipping Address</th>
+                <th style="padding: 10px; text-align: left; background-color: #f2f2f2; font-weight: bold;">Created Date</th>
+                <th style="padding: 10px; text-align: left; background-color: #f2f2f2; font-weight: bold;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="o, s: ${user.orders}">
+                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;" th:text="${s.count}">Index</td>
+                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;" th:text="${o.id}">Id</td>
+                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;" th:text="${o.address}">Shipping Address</td>
+                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;" th:text="${o.createDate}">Created Date</td>
+                <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+
+</html>
